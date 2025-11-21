@@ -13,7 +13,8 @@ public class Carrinho {
             throw new QuantidadeInvalidaException("Quantidade deve ser maior que zero");
         }
         String codigo = produto.getCodigo();
-        int novaQuantidade = itens.containsKey(codigo) ? itens.get(codigo).quantidade : 0;
+        ItemCarrinho itemExistente = itens.get(codigo);
+        int novaQuantidade = (itemExistente != null) ? itemExistente.quantidade : 0;
         itens.put(codigo, new ItemCarrinho(produto, novaQuantidade + quantidade));
     }
 
@@ -45,8 +46,8 @@ public class Carrinho {
     }
 
     private static class ItemCarrinho {
-        Produto produto;
-        int quantidade;
+        private final Produto produto;
+        private final int quantidade;
 
         ItemCarrinho(Produto produto, int quantidade) {
             this.produto = produto;
