@@ -31,7 +31,7 @@ public class Carrinho {
         BigDecimal subtotal = getSubtotal();
         BigDecimal total = politica.aplicar(subtotal);
         if (total == null || total.compareTo(BigDecimal.ZERO) < 0) {
-            return BigDecimal.ZERO;
+            return UtilDinheiro.arredondar2(BigDecimal.ZERO);
         }
         return UtilDinheiro.arredondar2(total);
     }
